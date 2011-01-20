@@ -28,6 +28,7 @@
 		}
 	</style>
 	<script type="text/javascript">
+		/* <![CDATA[ */
 		var Card = new Class({
 			initialize: function(value, image) {
 				this.value = value;
@@ -39,12 +40,12 @@
 				this.name = name;
 				this.cards = cards;
 				this.cardsInPlay = [];
-				this.hasPlayed = false;
+				this.hasPlayed = 0;
 			},
 			
 			play_card: function() {
 				this.cardsInPlay.push(this.cards.shift());
-				this.hasPlayed = true;
+				this.hasPlayed += 1;
 			},
 		});
 		var Game = new Class({
@@ -54,7 +55,8 @@
 			},
 			
 			take_turn: function(playerID) {
-				if (this.players[playerID].hasPlayed) {
+				if ((this.war && this.players[playerID].hasPlayed > 3)
+				|| (!this.war && this.players[playerID].hasPlayed)) {
 					return false;
 				}
 				
@@ -93,7 +95,7 @@
 						max = card.value;
 						best = [index];
 					} else if (card.value == max) {
-						best.append(index);
+						best.push(index);
 					}
 				});
 				
@@ -101,9 +103,14 @@
 			},
 			
 			everyone_is_ready: function() {
-				return this.players.every(function(player) {
-					return player.hasPlayed;
-				});
+				var game = this;
+				return (this.war)
+				       ? this.war.every(function(playerID) {
+				         	return game.players[playerID].hasPlayed > 3;
+				         })
+				       : this.players.every(function(player) {
+				         	return player.hasPlayed;
+				         });
 			},
 			
 			cards_in_play: function() {
@@ -139,7 +146,7 @@
 			
 			reset_played_status: function() {
 				this.players.each(function(player){
-					player.hasPlayed = false;
+					player.hasPlayed = 0;
 				});
 			},
 		});
@@ -176,12 +183,28 @@
 				new Card(4),
 			].shuffle();
 			
+			// War-generating
+			//cards = [
+			//	new Card(1),
+			//	new Card(2),
+			//	new Card(3),
+			//	new Card(4),
+			//	new Card(4),
+			//	
+			//	new Card(1),
+			//	new Card(2),
+			//	new Card(3),
+			//	new Card(4),
+			//	new Card(5),
+			//];
+			
 			
 			player1 = new Player('Player 1', cards.slice(0, cards.length/2));
 			player2 = new Player('Player 2', cards.slice(cards.length/2));
 			
 			game = new Game([player1, player2]);
 		});
+		/* ]]> */
 	</script>
 </head>
 <body>

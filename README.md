@@ -3,6 +3,11 @@ A round is performed by flipping over the top card in each stack; the player who
 plays the card with the highest number takes all cards played and adds them to
 the bottom of their stack.
 
+Ties trigger the titular war; all tied players place three cards face-down and a
+fourth one face-up, and the placer of the highest card wins all cards in play.
+If another tie occurs, another war is started. If a player does not have enough
+cards to finish a war, they place their last card face-up.
+
 There is no frontend yet; you have to play the game using a Javascript console,
 like [Firebug].
 
