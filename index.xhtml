@@ -58,6 +58,8 @@
 			},
 			
 			take_turn: function(playerID) {
+				assert(playerID < this.players.length);
+				
 				if ((this.war && this.players[playerID].hasPlayed > 3)
 				|| (!this.war && this.players[playerID].hasPlayed)) {
 					return false;
