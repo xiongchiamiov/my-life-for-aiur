@@ -33,9 +33,18 @@
 	<script type="text/javascript">
 		/* <![CDATA[ */
 		var Card = new Class({
-			initialize: function(value, image) {
+			initialize: function(value, suit, back) {
 				this.value = value;
-				this.image = image;
+				this.suit = suit;
+				this.back = back;
+			},
+			
+			face_image: function() {
+				return 'images/'+suit+'-'+value+'.png';
+			},
+			
+			back_image: function() {
+				return 'images/'+back+'.png';
 			},
 		});
 		var Player = new Class({
@@ -162,6 +171,20 @@
 			},
 		});
 		
+		function generate_deck(backs) {
+			cards = [];
+			
+			backs.each(function(back) {
+				['clubs', 'diamonds', 'hearts', 'spades'].each(function(suit) {
+					for (var value=2; value < 15; value++) { // aces are high
+						cards.push(new Card(value, suit, back));
+					}
+				});
+			});
+			
+			return cards;
+		};
+		
 		// Thanks to David Walsh
 		// http://davidwalsh.name/array-shuffling-mootools
 		Array.implement({
@@ -190,27 +213,7 @@
 			jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
 			jasmine.getEnv().execute();
 			
-			cards = [
-				new Card(1),
-				new Card(2),
-				new Card(3),
-				new Card(4),
-			].shuffle();
-			
-			// War-generating
-			//cards = [
-			//	new Card(1),
-			//	new Card(2),
-			//	new Card(3),
-			//	new Card(4),
-			//	new Card(4),
-			//	
-			//	new Card(1),
-			//	new Card(2),
-			//	new Card(3),
-			//	new Card(4),
-			//	new Card(5),
-			//];
+			cards = generate_deck(['blue']).shuffle();
 			
 			
 			player1 = new Player('Player 1', cards.slice(0, cards.length/2));
@@ -319,6 +322,22 @@
 						
 						expect(result).toEqual(player1);
 					});
+				});
+			});
+		});
+		
+		describe('deck generating', function() {
+			it('should generate all the cards in a deck', function() {
+				var deck = generate_deck(['blue']);
+				
+				[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].each(function(value) {
+					expect(
+						deck.filter(function(card) {
+							return card.value == value;
+						}).map(function(card) {
+							return card.suit;
+						}).sort()
+					).toEqual(['clubs', 'diamonds', 'hearts', 'spades']);
 				});
 			});
 		});
