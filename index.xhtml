@@ -328,7 +328,7 @@
 		
 		describe('deck generating', function() {
 			it('should generate all the cards in a deck', function() {
-				var deck = generate_deck(['blue']);
+				var deck = generate_deck(['green']);
 				
 				[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].each(function(value) {
 					expect(
@@ -346,12 +346,12 @@
 <body>
 	<div id="game">
 		<div id="player-left">
-			left
+			<img src="images/clubs-2.png" />
 		</div>
 		<div id="playing-field">
 		</div>
 		<div id="player-right">
-			right
+			<img src="images/green.png" />
 		</div>
 	</div>
 </body>
