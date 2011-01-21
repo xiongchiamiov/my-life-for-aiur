@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="jasmine-1.0.1/jasmine-dom-matchers.js" />
 	<script type="text/javascript" src="jasmine-1.0.1/jasmine-dom-fixtures.js" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js" />
+	<script type="text/javascript" src="media/js/mootools-more.js" />
 	<script type="text/javascript" src="media/js/classes.js" />
 	<script type="text/javascript" src="media/js/tests.js" />
 	<script type="text/javascript" src="media/js/ui.js" />
@@ -32,6 +33,8 @@
 			player2View.draw();
 			
 			game = new Game([player1, player2]);
+			
+			make_cards_draggable();
 		});
 		/* ]]> */
 	</script>
@@ -39,7 +42,7 @@
 <body>
 	<div id="game">
 		<div id="player-left">
-			<img />
+			<img class="draggable" />
 			<div class="counter" />
 		</div>
 		<div id="playing-field">
@@ -47,7 +50,7 @@
 			<img />
 		</div>
 		<div id="player-right">
-			<img />
+			<img class="draggable" />
 			<div class="counter" />
 		</div>
 	</div>

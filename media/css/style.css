@@ -14,13 +14,14 @@ body {
 #player-left,
 #playing-field {
 	float: left;
-	margin-right: 2em;
+	margin-right: 40px;
 }
 #playing-field {
-	width: 200px;
+	width: 210px;
 }
 
 .counter {
+	margin-top: 150px;
 	text-align: center;
 	font-size: 40px;
 }
