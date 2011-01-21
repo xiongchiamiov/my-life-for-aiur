@@ -11,7 +11,7 @@ var Card = new Class({
 	
 	back_image: function() {
 		return 'images/'+back+'.png';
-	},
+	}
 });
 var Player = new Class({
 	initialize: function(name, cards) {
@@ -24,7 +24,7 @@ var Player = new Class({
 	play_card: function() {
 		this.cardsInPlay.push(this.cards.shift());
 		this.hasPlayed += 1;
-	},
+	}
 });
 var Game = new Class({
 	initialize: function(players) {
@@ -134,5 +134,5 @@ var Game = new Class({
 		this.players.each(function(player){
 			player.hasPlayed = 0;
 		});
-	},
+	}
 });
