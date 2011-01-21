@@ -5,8 +5,12 @@ var PlayerView = new Class({
 	},
 	
 	draw: function() {
-		var back = (this.player.cards.length > 0) ? this.player.cards[0].back_image() : '';
-		$(this.id).getElement('img').set('src', back);
+		var playerView = this;
+		
+		this.player.cards.each(function(card) {
+			$(playerView.id).grab(new Element('img', {src: card.back_image(), class: 'draggable'}), 'top');
+		});
+		make_cards_draggable();
 		
 		$(this.id).getElement('.counter').set('text', this.player.cards.length);
 	}
