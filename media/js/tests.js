@@ -135,3 +135,39 @@ describe('deck generating', function() {
 		});
 	});
 });
+
+describe('PlayerView', function() {
+	beforeEach(function() {
+		setFixtures('<div id="player"><img /><div class="counter" /></div>');
+	});
+	
+	it('should draw a non-empty deck', function() {
+		var player = new Player('Player', [new Card(2, 'clubs', 'green')]);
+		var playerView = new PlayerView(player, 'player');
+		playerView.draw();
+		
+		expect($('jasmine-fixtures').getElement('img')).toHaveAttr('src', 'images/green.png');
+	});
+	
+	it('should not draw an empty deck', function() {
+		var player = new Player('Player', []);
+		var playerView = new PlayerView(player, 'player');
+		playerView.draw();
+		
+		expect($('jasmine-fixtures').getElement('img')).toHaveAttr('src', '');
+	});
+	
+	it("should display the number of cards in the player's deck", function() {
+		var player1 = new Player('Player 1', []);
+		var playerView = new PlayerView(player1, 'player');
+		playerView.draw();
+		
+		expect($('jasmine-fixtures').getElement('.counter').get('text')).toEqual('0');
+		
+		var player2 = new Player('Player 2', [new Card(), new Card(), new Card()]);
+		var playerView = new PlayerView(player2, 'player');
+		playerView.draw();
+		
+		expect($('jasmine-fixtures').getElement('.counter').get('text')).toEqual('3');
+	});
+});

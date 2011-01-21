@@ -7,9 +7,12 @@
 	<link rel="stylesheet" type="text/css" href="media/css/style.css" />
 	<script type="text/javascript" src="jasmine-1.0.1/jasmine.js" />
 	<script type="text/javascript" src="jasmine-1.0.1/jasmine-html.js" />
+	<script type="text/javascript" src="jasmine-1.0.1/jasmine-dom-matchers.js" />
+	<script type="text/javascript" src="jasmine-1.0.1/jasmine-dom-fixtures.js" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js" />
 	<script type="text/javascript" src="media/js/classes.js" />
 	<script type="text/javascript" src="media/js/tests.js" />
+	<script type="text/javascript" src="media/js/ui.js" />
 	<script type="text/javascript" src="media/js/util.js" />
 	<script type="text/javascript">
 		/* <![CDATA[ */
@@ -17,11 +20,16 @@
 			jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
 			jasmine.getEnv().execute();
 			
-			cards = generate_deck(['blue']).shuffle();
+			cards = generate_deck(['green']).shuffle();
 			
 			
 			player1 = new Player('Player 1', cards.slice(0, cards.length/2));
+			player1View = new PlayerView(player1, 'player-left');
+			player1View.draw();
+			
 			player2 = new Player('Player 2', cards.slice(cards.length/2));
+			player2View = new PlayerView(player2, 'player-right');
+			player2View.draw();
 			
 			game = new Game([player1, player2]);
 		});
@@ -31,12 +39,16 @@
 <body>
 	<div id="game">
 		<div id="player-left">
-			<img src="images/clubs-2.png" />
+			<img />
+			<div class="counter" />
 		</div>
 		<div id="playing-field">
+			<img />
+			<img />
 		</div>
 		<div id="player-right">
-			<img src="images/green.png" />
+			<img />
+			<div class="counter" />
 		</div>
 	</div>
 </body>

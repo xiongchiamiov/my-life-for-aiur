@@ -2,7 +2,7 @@ body {
 	background-color: #D6DEFF;
 	min-height: 100%;
 }
-#game div {
+#game > div {
 	border: 2px dotted #222;
 	height: 200px;
 	display: inline-block;
@@ -18,4 +18,9 @@ body {
 }
 #playing-field {
 	width: 200px;
+}
+
+.counter {
+	text-align: center;
+	font-size: 40px;
 }
