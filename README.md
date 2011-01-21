@@ -12,7 +12,7 @@ There is no frontend yet; you have to play the game using a Javascript console,
 like [Firebug].
 
 This project is currently licensed under a [Creative Commons By-NC-SA license]
-[CC], mostly because I was too lazy to write my own `asssert` function.
+[CC], mostly because I was too lazy to write my own `assert` function.
 
 [War]: http://en.wikipedia.org/wiki/War_(card_game)
 [Firebug]: http://getfirebug.com/
