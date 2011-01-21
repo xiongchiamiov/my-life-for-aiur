@@ -1,3 +1,23 @@
+describe('Card', function() {
+	var club_2;
+	var hearts_14;
+	
+	beforeEach(function() {
+		club_2 = new Card(2, 'club', 'green');
+		hearts_14 = new Card(14, 'hearts', 'green');
+	});
+	
+	it('should provide the url to an image of its face', function() {
+		expect(club_2.face_image()).toEqual('images/club-2.png');
+		expect(hearts_14.face_image()).toEqual('images/hearts-14.png');
+	});
+	
+	it('should provide the url to an image of its back', function() {
+		expect(club_2.back_image()).toEqual('images/green.png');
+		expect(hearts_14.back_image()).toEqual('images/green.png');
+	});
+});
+
 describe('Player', function() {
 	var player;
 	

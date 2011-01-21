@@ -6,11 +6,11 @@ var Card = new Class({
 	},
 	
 	face_image: function() {
-		return 'images/'+suit+'-'+value+'.png';
+		return 'images/'+this.suit+'-'+this.value+'.png';
 	},
 	
 	back_image: function() {
-		return 'images/'+back+'.png';
+		return 'images/'+this.back+'.png';
 	}
 });
 var Player = new Class({
