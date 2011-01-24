@@ -23,7 +23,7 @@ var PlayerView = new Class({
 		$(this.id).getElement('.counter').set('text', this.player.cards.length);
 		
 		var face_image = this.player.cardsInPlay.length > 0
-		               ? this.player.cardsInPlay[0].face_image()
+		               ? this.player.cardsInPlay.getLast().face_image()
 		               : '';
 		$(this.id + '-played').set('src', face_image);
 	}
