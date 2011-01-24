@@ -32,15 +32,15 @@ var Game = new Class({
 		this.war = false;
 	},
 	
-	take_turn: function(playerID) {
+	can_take_turn: function(playerID) {
 		assert(playerID < this.players.length);
 		
-		if ((this.war && this.players[playerID].hasPlayed > 3)
-		|| (!this.war && this.players[playerID].hasPlayed)) {
-			return false;
-		}
-		
-		this.players[playerID].play_card();
+		return ((this.war && this.players[playerID].hasPlayed < 4)
+		    || (!this.war && !this.players[playerID].hasPlayed));
+	},
+	
+	take_turn: function(playerID) {
+		//this.players[playerID].play_card();
 		
 		// In a war, we want the player to be marked as ready
 		// if they play their last card.

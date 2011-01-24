@@ -1,10 +1,13 @@
+// Don't call this function a second time without destroying all images first.
+// It relies upon an incredibly naive method of assigning unique IDs.
 function generate_deck(backs) {
 	cards = [];
+	id = 1;
 	
 	backs.each(function(back) {
 		['clubs', 'diamonds', 'hearts', 'spades'].each(function(suit) {
 			for (var value=2; value < 15; value++) { // aces are high
-				cards.push(new Card(value, suit, back));
+				cards.push(new Card(value, suit, back, id++));
 			}
 		});
 	});

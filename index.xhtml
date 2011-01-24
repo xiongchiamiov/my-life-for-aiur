@@ -25,14 +25,14 @@
 			
 			
 			player1 = new Player('Player 1', cards.slice(0, cards.length/2));
-			player1View = new PlayerView(player1, 'player-left');
-			player1View.draw();
+			player1View = new PlayerView(player1, 'player-left', 0);
 			
 			player2 = new Player('Player 2', cards.slice(cards.length/2));
-			player2View = new PlayerView(player2, 'player-right');
-			player2View.draw();
+			player2View = new PlayerView(player2, 'player-right', 1);
 			
 			game = new Game([player1, player2]);
+			gameView = new GameView(game, [player1View, player2View]);
+			gameView.draw();
 		});
 		/* ]]> */
 	</script>
@@ -40,11 +40,15 @@
 <body>
 	<div id="game">
 		<div id="player-left">
+			<img class="draggable" /><img />
 			<div class="counter" />
 		</div>
 		<div id="playing-field">
+			<img id="player-left-played" src="" />
+			<img id="player-right-played" src="images/hearts-2.png" />
 		</div>
 		<div id="player-right">
+			<img class="draggable" /><img />
 			<div class="counter" />
 		</div>
 	</div>

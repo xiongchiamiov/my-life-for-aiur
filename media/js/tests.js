@@ -138,7 +138,13 @@ describe('deck generating', function() {
 
 describe('PlayerView', function() {
 	beforeEach(function() {
-		setFixtures('<div id="player"><div class="counter" /></div>');
+		setFixtures('<div id="player"> \
+		                 <img class="draggable" /><img /> \
+		                 <div class="counter" /> \
+		             </div> \
+		             <div id="playing-field"> \
+		                 <img id="player-played" /> \
+		             </div>');
 	});
 	
 	it('should draw a non-empty deck', function() {
@@ -154,7 +160,7 @@ describe('PlayerView', function() {
 		var playerView = new PlayerView(player, 'player');
 		playerView.draw();
 		
-		expect($('jasmine-fixtures').getElement('img')).toEqual(null);
+		expect($('jasmine-fixtures').getElement('img')).toBeHidden();
 	});
 	
 	it("should display the number of cards in the player's deck", function() {

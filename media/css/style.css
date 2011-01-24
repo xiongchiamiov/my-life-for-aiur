@@ -20,8 +20,23 @@ body {
 	width: 210px;
 }
 
+#player-left img,
+#player-right img {
+	z-index: 2;
+}
+
+#player-left-played {
+	float: left;
+	z-index: 1;
+}
+#player-right-played {
+	float: right;
+	z-index: 1;
+	width: 100px;
+}
+
 .counter {
-	margin-top: 150px;
+	/*margin-top: 150px;*/
 	text-align: center;
 	font-size: 40px;
 }
