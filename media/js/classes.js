@@ -40,21 +40,28 @@ var Game = new Class({
 	},
 	
 	take_turn: function(playerID) {
-		//this.players[playerID].play_card();
+		this.players[playerID].play_card();
 		
 		// In a war, we want the player to be marked as ready
 		// if they play their last card.
 		if (this.war && this.players[playerID].cards.length == 0) {
 			this.players[playerID].hasPlayed = 4;
 		}
+	},
 		
+	// Returns an integer index of the player who won the round,
+	// or null if the round we're still waiting on someone to play.
+	calculate_turn_result: function() {
 		if (this.everyone_is_ready()) {
 			var result = this.calculate_result();
 			assert(result.length > 0);
 			
+			var winner = null;
+			
 			if (result.length > 1) {
 				this.war = result;
 			} else { // somebody won this round
+				winner = result[0];
 				this.players[result[0]].cards.append(this.cards_in_play());
 				this.clean_up_cards();
 				
@@ -62,14 +69,12 @@ var Game = new Class({
 				if (this.players.length == 1) {
 					winner = this.end_game();
 					console.log(winner.name + " won the game!");
-					return winner;
 				}
 			}
-			
 			this.reset_played_status();
-			
-			return result;
 		}
+		
+		return winner;
 	},
 	
 	calculate_result: function() {

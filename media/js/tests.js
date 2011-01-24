@@ -43,6 +43,7 @@ describe('Game', function() {
 			game = new Game([player1, player2]);
 			game.take_turn(0);
 			game.take_turn(1);
+			game.calculate_turn_result();
 		});
 		
 		it('should have a war', function() {
@@ -80,7 +81,8 @@ describe('Game', function() {
 					player2.cards.push(new Card(9));
 					
 					game.take_turn(0);
-					result = game.take_turn(1);
+					game.take_turn(1);
+					result = game.calculate_turn_result();
 				});
 				
 				it('should declare as winner the player with the highest fourth card', function() {
@@ -112,7 +114,8 @@ describe('Game', function() {
 				game.take_turn(1);
 				game.take_turn(1);
 				game.take_turn(1);
-				var result = game.take_turn(1);
+				game.take_turn(1);
+				var result = game.calculate_turn_result();
 				
 				expect(result).toEqual(player1);
 			});

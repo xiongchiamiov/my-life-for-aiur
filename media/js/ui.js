@@ -73,13 +73,13 @@ function make_cards_draggable() {
 				setTimeout(function() {
 					move_card_to_deck(draggable);
 					
-					game.players[playerID].play_card();
+					game.take_turn(playerID);
 					gameView.draw();
 					
 					setTimeout(function() {
-						var winner = game.take_turn(playerID);
-						if (winner) {
-							gameView.award_cards(winner[0]);
+						var winner = game.calculate_turn_result();
+						if (winner != null) {
+							gameView.award_cards(winner);
 							setTimeout(function() {
 								gameView.draw();
 							}, 500);
