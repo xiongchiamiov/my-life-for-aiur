@@ -51,6 +51,7 @@ var Game = new Class({
 		
 	// Returns an integer index of the player who won the round,
 	// or null if the round we're still waiting on someone to play.
+	// Or, the actual player object, if they won the game.
 	calculate_turn_result: function() {
 		if (this.everyone_is_ready()) {
 			var result = this.calculate_result();
@@ -61,6 +62,7 @@ var Game = new Class({
 			if (result.length > 1) {
 				this.war = result;
 			} else { // somebody won this round
+				this.war = false;
 				winner = result[0];
 				this.players[result[0]].cards.append(this.cards_in_play());
 				this.clean_up_cards();

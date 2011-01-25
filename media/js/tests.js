@@ -77,8 +77,10 @@ describe('Game', function() {
 				beforeEach(function() {
 					player1.cards.pop();
 					player1.cards.push(new Card(8));
+					player1.cards.push(new Card(11));
 					player2.cards.pop();
 					player2.cards.push(new Card(9));
+					player2.cards.push(new Card(10));
 					
 					game.take_turn(0);
 					game.take_turn(1);
@@ -86,7 +88,7 @@ describe('Game', function() {
 				});
 				
 				it('should declare as winner the player with the highest fourth card', function() {
-					expect(result).toEqual(player2);
+					expect(result).toEqual(1);
 				});
 				
 				it('should give all played cards to the winner', function() {
@@ -99,6 +101,24 @@ describe('Game', function() {
 					expect(player2.cards).toContain(new Card(7));
 					expect(player2.cards).toContain(new Card(8));
 					expect(player2.cards).toContain(new Card(9));
+				});
+				
+				describe('when then followed by another uneven pair', function() {
+					beforeEach(function() {
+						
+						game.take_turn(0);
+						game.take_turn(1);
+						result = game.calculate_turn_result();
+					});
+					
+					it('should declare as winner the player with the highest fourth card', function() {
+						expect(result).toEqual(0);
+					});
+					
+					it('should give all played cards to the winner', function() {
+						expect(player1.cards).toContain(new Card(11));
+						expect(player1.cards).toContain(new Card(10));
+					});
 				});
 			});
 		});
