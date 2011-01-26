@@ -77,10 +77,8 @@ describe('Game', function() {
 				beforeEach(function() {
 					player1.cards.pop();
 					player1.cards.push(new Card(8));
-					player1.cards.push(new Card(11));
 					player2.cards.pop();
 					player2.cards.push(new Card(9));
-					player2.cards.push(new Card(10));
 					
 					game.take_turn(0);
 					game.take_turn(1);
@@ -105,6 +103,8 @@ describe('Game', function() {
 				
 				describe('when then followed by another uneven pair', function() {
 					beforeEach(function() {
+						player1.cards.push(new Card(11));
+						player2.cards.unshift(new Card(10)); // cheat it to the front of the deck
 						
 						game.take_turn(0);
 						game.take_turn(1);
@@ -137,7 +137,7 @@ describe('Game', function() {
 				game.take_turn(1);
 				var result = game.calculate_turn_result();
 				
-				expect(result).toEqual(player1);
+				expect(result).toEqual(0);
 			});
 		});
 	});

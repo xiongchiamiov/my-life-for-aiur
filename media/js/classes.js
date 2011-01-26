@@ -51,7 +51,6 @@ var Game = new Class({
 		
 	// Returns an integer index of the player who won the round,
 	// or null if the round we're still waiting on someone to play.
-	// Or, the actual player object, if they won the game.
 	calculate_turn_result: function() {
 		if (this.everyone_is_ready()) {
 			var result = this.calculate_result();
@@ -66,13 +65,9 @@ var Game = new Class({
 				winner = result[0];
 				this.players[result[0]].cards.append(this.cards_in_play());
 				this.clean_up_cards();
-				
 				this.prune_losers();
-				if (this.players.length == 1) {
-					winner = this.end_game();
-					console.log(winner.name + " won the game!");
-				}
 			}
+			
 			this.reset_played_status();
 		}
 		
@@ -125,16 +120,27 @@ var Game = new Class({
 	},
 	
 	prune_losers: function() {
-		this.players = this.players.filter(function(player) {
-			return player.cards.length > 0;
+		this.players.each(function(player) {
+			if (player.cards.length == 0) {
+				// Pretend that they're always ready
+				player.hasPlayed = 4;
+			}
 		});
 	},
 	
-	end_game: function() {
-		assert(this.players.length == 1);
+	game_has_ended: function() {
+		var someone_has_cards = false;
+		this.players.each(function(player) {
+			if (player.cards.length > 0) {
+				if (someone_has_cards) {
+					return false;
+				} else {
+					someone_has_cards = true;
+				}
+			}
+		});
 		
-		this.completed = true;
-		return this.players[0];
+		return true;
 	},
 	
 	reset_played_status: function() {
