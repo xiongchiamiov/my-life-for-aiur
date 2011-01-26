@@ -33,6 +33,8 @@
 			game = new Game([player1, player2]);
 			gameView = new GameView(game, [player1View, player2View]);
 			gameView.draw();
+			
+			setup_controls();
 		});
 		/* ]]> */
 	</script>
@@ -51,6 +53,9 @@
 			<img class="draggable" /><img />
 			<div class="counter" />
 		</div>
+	</div>
+	<div id="controls">
+		<button id="auto-play">Auto-play</button>
 	</div>
 </body>
 </html>

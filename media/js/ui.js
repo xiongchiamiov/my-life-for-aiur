@@ -171,3 +171,14 @@ function move_cards_to_center(cards) {
 		});
 	});
 }
+
+function setup_controls() {
+	$('auto-play').addEvent('click', function() {
+		while(!game.game_has_ended()) {
+			game.take_turn(0);
+			game.take_turn(1);
+			game.calculate_turn_result();
+		}
+		gameView.draw();
+	});
+}
