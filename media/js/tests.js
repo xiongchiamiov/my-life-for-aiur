@@ -221,6 +221,9 @@ describe('PlayerView', function() {
 		playerView.draw();
 		
 		expect($('jasmine-fixtures').getElement('img')).toHaveAttr('src', 'images/green.png');
+		expect($('jasmine-fixtures').getElement('img').getStyle('visibility')).toBe('visible');
+		// This fails for seemingly no good reason in Chromium 8.0.552.237
+		//expect($('jasmine-fixtures').getElement('img')).toBeVisible();
 	});
 	
 	it('should not draw an empty deck', function() {
@@ -229,9 +232,7 @@ describe('PlayerView', function() {
 		playerView.draw();
 		
 		// Unfortunately, jasmine-dom's toBeHidden() doesn't check for visibility.
-		// This is fragile, as it expects nothing else, style-wise, to have been applied.
-		// Another option would be to assign a class .hidden, and CSS-hide those.
-		expect($('jasmine-fixtures').getElement('img')).toHaveAttr('style', 'visibility: hidden;');
+		expect($('jasmine-fixtures').getElement('img').getStyle('visibility')).toBe('hidden');
 	});
 	
 	it("should display the number of cards in the player's deck", function() {
