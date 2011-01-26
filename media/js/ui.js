@@ -116,7 +116,7 @@ function animate_card_to_center(card) {
 			offset = {x: -145, y: 0};
 			break;
 		default:
-			console.log(card.parentNode.get('id'));
+			//console.log(card.parentNode.get('id'));
 	}
 	card.move({
 		relativeTo: card.parentNode,
@@ -161,7 +161,7 @@ function move_cards_to_center(cards) {
 				edge = 'upperRight';
 				break;
 			default:
-				console.log(card.get('id'));
+				//console.log(card.get('id'));
 		}
 		card.move({
 			relativeTo: 'playing-field',
