@@ -10,14 +10,14 @@ var PlayerView = new Class({
 		var playerView = this;
 		
 		var images = $(this.id).getElements('img');
-		images.setStyle('display', 'none');
+		images.setStyle('visibility', 'hidden');
 		
 		// We only show at max two cards - one for dragging, and one to
 		// represent all the other cards in the deck.
 		for(var i=0; i < this.player.cards.length && i < 2; i++) {
 			var card = this.player.cards[i];
 			images[i].set('src', card.back_image());
-			images[i].setStyle('display', 'block');
+			images[i].setStyle('visibility', 'visible');
 		}
 		
 		$(this.id).getElement('.counter').set('text', this.player.cards.length);

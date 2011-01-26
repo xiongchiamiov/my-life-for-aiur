@@ -183,7 +183,10 @@ describe('PlayerView', function() {
 		var playerView = new PlayerView(player, 'player');
 		playerView.draw();
 		
-		expect($('jasmine-fixtures').getElement('img')).toBeHidden();
+		// Unfortunately, jasmine-dom's toBeHidden() doesn't check for visibility.
+		// This is fragile, as it expects nothing else, style-wise, to have been applied.
+		// Another option would be to assign a class .hidden, and CSS-hide those.
+		expect($('jasmine-fixtures').getElement('img')).toHaveAttr('style', 'visibility: hidden;');
 	});
 	
 	it("should display the number of cards in the player's deck", function() {
