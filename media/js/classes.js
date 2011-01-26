@@ -63,7 +63,7 @@ var Game = new Class({
 			} else { // somebody won this round
 				this.war = false;
 				winner = result[0];
-				this.players[result[0]].cards.append(this.cards_in_play());
+				this.players[result[0]].cards.append(this.cards_in_play().shuffle());
 				this.clean_up_cards();
 				this.prune_losers();
 			}
