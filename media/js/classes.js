@@ -130,15 +130,15 @@ var Game = new Class({
 	
 	game_has_ended: function() {
 		var someone_has_cards = false;
-		this.players.each(function(player) {
-			if (player.cards.length > 0) {
+		for (i = 0; i < this.players.length; i++) {
+			if (this.players[i].cards.length > 0) {
 				if (someone_has_cards) {
 					return false;
 				} else {
 					someone_has_cards = true;
 				}
 			}
-		});
+		}
 		
 		return true;
 	},

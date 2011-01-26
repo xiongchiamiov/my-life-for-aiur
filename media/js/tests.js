@@ -31,6 +31,36 @@ describe('Player', function() {
 });
 
 describe('Game', function() {
+	describe('When all players have cards', function() {
+		var game;
+		
+		beforeEach(function() {
+			player1 = new Player('Player 1', [new Card(1)]);
+			player2 = new Player('Player 2', [new Card(1)]);
+			
+			game = new Game([player1, player2]);
+		});
+		
+		it('should say the game is not yet ended', function() {
+			expect(game.game_has_ended()).toBe(false);
+		});
+	});
+	
+	describe('When only one player has cards', function() {
+		var game;
+		
+		beforeEach(function() {
+			player1 = new Player('Player 1', [new Card(1)]);
+			player2 = new Player('Player 2', []);
+			
+			game = new Game([player1, player2]);
+		});
+		
+		it('should say the game has ended', function() {
+			expect(game.game_has_ended()).toBe(true);
+		});
+	})
+	
 	describe('When two players tie', function() {
 		var game;
 		var player1;
