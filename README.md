@@ -8,12 +8,21 @@ fourth one face-up, and the placer of the highest card wins all cards in play.
 If another tie occurs, another war is started. If a player does not have enough
 cards to finish a war, they place their last card face-up.
 
-There is no frontend yet; you have to play the game using a Javascript console,
-like [Firebug].
-
 This project is currently licensed under a [Creative Commons By-NC-SA license]
 [CC], mostly because I was too lazy to write my own `assert` function.
 
+A few important libraries are used:
+
+* [MooTools] - MIT license
+* [Jasmine] - MIT license
+* [jasmine-dom] - MIT license
+
+As with all software, there are a number of improvements that can be made. Take
+a look at [the issue tracker] for more information.
+
 [War]: http://en.wikipedia.org/wiki/War_(card_game)
-[Firebug]: http://getfirebug.com/
 [CC]: http://creativecommons.org/licenses/by-nc-sa/3.0/
+[MooTools]: http://mootools.net/
+[Jasmine]: http://pivotal.github.com/jasmine/
+[jasmine-dom]: https://github.com/jeffwatkins/jasmine-dom
+[the issue tracker]: https://github.com/xiongchiamiov/my-life-for-aiur/issues
