@@ -2,6 +2,18 @@ body {
 	background-color: #D6DEFF;
 	min-height: 100%;
 }
+#game,
+#controls {
+	width: 510px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#controls {
+	text-align: center;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
 #game > div {
 	border: 2px dotted #222;
 	height: 200px;
