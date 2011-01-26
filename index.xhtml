@@ -21,19 +21,7 @@
 			jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
 			jasmine.getEnv().execute();
 			
-			cards = generate_deck(['green']).shuffle();
-			
-			
-			player1 = new Player('Player 1', cards.slice(0, cards.length/2));
-			player1View = new PlayerView(player1, 'player-left', 0);
-			
-			player2 = new Player('Player 2', cards.slice(cards.length/2));
-			player2View = new PlayerView(player2, 'player-right', 1);
-			
-			game = new Game([player1, player2]);
-			gameView = new GameView(game, [player1View, player2View]);
-			gameView.draw();
-			
+			setup_new_game();
 			setup_controls();
 		});
 		/* ]]> */
@@ -56,6 +44,7 @@
 	</div>
 	<div id="controls">
 		<button id="auto-play">Auto-play</button>
+		<button id="new-game">New Game</button>
 	</div>
 </body>
 </html>

@@ -172,6 +172,21 @@ function move_cards_to_center(cards) {
 	});
 }
 
+// This function sets up the values for two global variables, game and gameView.
+function setup_new_game(){
+	var cards = generate_deck(['green']).shuffle();
+	
+	var player1 = new Player('Player 1', cards.slice(0, cards.length/2));
+	var player1View = new PlayerView(player1, 'player-left', 0);
+	
+	var player2 = new Player('Player 2', cards.slice(cards.length/2));
+	var player2View = new PlayerView(player2, 'player-right', 1);
+	
+	game = new Game([player1, player2]);
+	gameView = new GameView(game, [player1View, player2View]);
+	gameView.draw();
+}
+
 function setup_controls() {
 	$('auto-play').addEvent('click', function() {
 		while(!game.game_has_ended()) {
@@ -184,5 +199,9 @@ function setup_controls() {
 			game.calculate_turn_result();
 		}
 		gameView.draw();
+	});
+	$('new-game').addEvent('click', function() {
+		// No, we can't just assign this function as the click handler.
+		setup_new_game();
 	});
 }
