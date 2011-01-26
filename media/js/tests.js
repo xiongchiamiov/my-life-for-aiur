@@ -31,6 +31,18 @@ describe('Player', function() {
 });
 
 describe('Game', function() {
+	describe('When there are no cards on the playing field', function() {
+		var game;
+		
+		beforeEach(function() {
+			game = new Game([new Player(), new Player()]);
+		});
+		
+		it('should not say that there are any cards in active play', function() {
+			expect(game.cards_in_active_play()).toEqual([]);
+		});
+	});
+	
 	describe('When all players have cards', function() {
 		var game;
 		

@@ -110,6 +110,8 @@ var Game = new Class({
 	cards_in_active_play: function() {
 		return this.players.map(function(player) {
 			return player.cardsInPlay.getLast();
+		}).filter(function(card) {
+			return card != undefined;
 		});
 	},
 	
