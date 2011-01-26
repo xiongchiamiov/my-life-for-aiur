@@ -61,10 +61,14 @@ function make_cards_draggable() {
 		},
 	
 		onLeave: function(draggable, droppable){
-			droppable.setStyle('background', '#6B7B95');
+			droppable.setStyle('background', '#D6DEFF');
 		},
 	
 		onDrop: function(draggable, droppable){
+			if (droppable) {
+				droppable.setStyle('background', '#D6DEFF');
+			}
+			
 			var playerID = draggable.parentNode.get('value');
 			
 			if (droppable && game.can_take_turn(playerID)){
