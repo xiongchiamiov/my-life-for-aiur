@@ -169,6 +169,21 @@ describe('Game', function() {
 				
 				expect(result).toEqual(0);
 			});
+			
+			it('the game should not be finished until the war is concluded', function() {
+				player2.cards[3] = new Card(7); // cheat to make player1 lose his last card
+				
+				game.take_turn(0);
+				expect(game.game_has_ended()).toBe(false);
+				
+				game.take_turn(1);
+				game.take_turn(1);
+				game.take_turn(1);
+				game.take_turn(1);
+				game.calculate_turn_result();
+				
+				expect(game.game_has_ended()).toBe(true);
+			});
 		});
 	});
 });

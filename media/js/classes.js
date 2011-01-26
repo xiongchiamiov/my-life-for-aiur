@@ -129,6 +129,12 @@ var Game = new Class({
 	},
 	
 	game_has_ended: function() {
+		// If we're in the middle of a war, players can have no cards,
+		// yet still have a chance to win.
+		if (this.war) {
+			return false;
+		}
+		
 		var someone_has_cards = false;
 		for (i = 0; i < this.players.length; i++) {
 			if (this.players[i].cards.length > 0) {
