@@ -2,12 +2,19 @@ body {
 	background-color: #D6DEFF;
 	min-height: 100%;
 }
+#message,
 #game,
 #controls {
 	width: 510px;
 	margin-left: auto;
 	margin-right: auto;
 }
+
+#message {
+	height: 2em;
+	text-align: center;
+}
+
 #controls {
 	text-align: center;
 	margin-top: 1em;

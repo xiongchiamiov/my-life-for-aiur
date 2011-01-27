@@ -41,6 +41,13 @@ var GameView = new Class({
 		this.playerViews.each(function(playerView) {
 			playerView.draw();
 		});
+		
+		if (this.game.game_has_ended()) {
+			var winMessage = 'Congratulations to our winner: ';
+			var playerID = this.game.winner();
+			winMessage += this.game.players[playerID].name;
+			$('message').set('text', winMessage);
+		}
 	},
 	
 	award_cards: function(winner) {
@@ -174,6 +181,9 @@ function move_cards_to_center(cards) {
 
 // This function sets up the values for two global variables, game and gameView.
 function setup_new_game(){
+	// Clear any notification of winners, etc. from previous round.
+	$('message').set('text', null);
+	
 	var cards = generate_deck(['green']).shuffle();
 	
 	var player1 = new Player('Player 1', cards.slice(0, cards.length/2));

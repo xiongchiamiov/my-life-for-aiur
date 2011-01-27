@@ -138,7 +138,7 @@ var Game = new Class({
 		}
 		
 		var someone_has_cards = false;
-		for (i = 0; i < this.players.length; i++) {
+		for (var i = 0; i < this.players.length; i++) {
 			if (this.players[i].cards.length > 0) {
 				if (someone_has_cards) {
 					return false;
@@ -149,6 +149,18 @@ var Game = new Class({
 		}
 		
 		return true;
+	},
+	
+	winner: function() {
+		assert(this.game_has_ended());
+		
+		for (var i = 0; i < this.players.length; i++) {
+			if (this.players[i].cards.length > 0) {
+				return i;
+			}
+		}
+		
+		return null;
 	},
 	
 	reset_played_status: function() {
