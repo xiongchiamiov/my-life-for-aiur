@@ -22,10 +22,13 @@ var PlayerView = new Class({
 		
 		$(this.id).getElement('.counter').set('text', this.player.cards.length);
 		
-		var face_image = this.player.cardsInPlay.length > 0
-		               ? this.player.cardsInPlay.getLast().face_image()
-		               : '';
-		$(this.id + '-played').set('src', face_image);
+		if (this.player.cardsInPlay.length > 0) {
+			var face_image = this.player.cardsInPlay.getLast().face_image();
+			$(this.id + '-played').set('src', face_image);
+			$(this.id + '-played').setStyle('visibility', 'visible');
+		} else {
+			$(this.id + '-played').setStyle('visibility', 'hidden');
+		}
 	}
 });
 
