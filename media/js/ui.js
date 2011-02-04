@@ -82,9 +82,7 @@ function make_cards_draggable() {
 			var playerID = draggable.parentNode.get('value');
 			
 			if (droppable && game.can_take_turn(playerID)){
-				animate_card_to_center(draggable);
-				
-				setTimeout(function() {
+				animate_card_to_center(draggable, function() {
 					move_card_to_deck(draggable);
 					
 					game.take_turn(playerID);
@@ -101,7 +99,7 @@ function make_cards_draggable() {
 							gameView.draw();
 						}
 					}, 200);
-				}, 500);
+				});
 			} else {
 				// If we don't land on the playing field,
 				// return the card to the deck.
@@ -115,7 +113,7 @@ function make_cards_draggable() {
 	});
 };
 
-function animate_card_to_center(card) {
+function animate_card_to_center(card, func) {
 	var offset;
 	
 	switch(card.parentNode.get('id')) {
@@ -128,12 +126,12 @@ function animate_card_to_center(card) {
 		default:
 			//console.log(card.parentNode.get('id'));
 	}
-	card.move({
+	card.move_and_call({
 		relativeTo: card.parentNode,
 		position: 'upperLeft',
 		offset: offset,
 		duration: 500
-	});
+	}, func);
 };
 
 function move_card_to_deck(card) {
@@ -156,7 +154,7 @@ function animate_cards_to_deck(cards, playerID) {
 	});
 }
 
-function move_cards_to_center(cards) {
+function move_cards_to_center(cards, func) {
 	var position;
 	var edge;
 	
@@ -218,3 +216,12 @@ function setup_controls() {
 		setup_new_game();
 	});
 }
+
+Element.implement({
+	move_and_call: function(options, func) {
+		assert(typeof options['duration'] != 'undefined');
+		
+		this.move(options);
+		setTimeout(func, options['duration']);
+	}
+});
