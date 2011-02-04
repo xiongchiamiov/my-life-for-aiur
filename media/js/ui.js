@@ -36,8 +36,6 @@ var GameView = new Class({
 	initialize: function(game, playerViews) {
 		this.game = game;
 		this.playerViews = playerViews;
-		
-		make_cards_draggable();
 	},
 	
 	draw: function() {
